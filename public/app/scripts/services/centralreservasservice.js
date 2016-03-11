@@ -2,13 +2,13 @@
 
 /**
  * @ngdoc service
- * @name opencancitapreviaApp.citapreviaService
+ * @name opencancentralreservasApp.centralreservasService
  * @description
- * # citapreviaService
- * Service in the opencancitapreviaApp.
+ * # centralreservasService
+ * Service in the opencancentralreservasApp.
  */
-angular.module('opencancitapreviaApp')
-  .service('citapreviaService', function ($http,SweetAlert) {
+angular.module('opencancentralreservasApp')
+  .service('centralreservasService', function ($http,SweetAlert) {
 
     function absolutize(_GATEWAY, path) {
       // If absolute URI path

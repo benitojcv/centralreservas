@@ -8,7 +8,7 @@ var cors = require('cors');
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
-var citaprevia = require('./routes/citaprevia');
+var centralreservas = require('./routes/centralreservas');
 
 var configuration = require('./configuration.js').Configuration;
 configuration.printConfiguration();
@@ -46,7 +46,7 @@ app.use(function(req, res, next) {
 app.use('/', routes);
 app.use('/users', users);
 
-app.use('/citaprevia', citaprevia);
+app.use('/centralreservas', centralreservas);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

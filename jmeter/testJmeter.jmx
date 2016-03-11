@@ -31,7 +31,7 @@
           <stringProp name="outputFormat">00000</stringProp>
           <stringProp name="minimumValue">32779</stringProp>
           <stringProp name="maximumValue">32783</stringProp>
-          <stringProp name="randomSeed">citaprevia</stringProp>
+          <stringProp name="randomSeed">centralreservas</stringProp>
           <boolProp name="perThread">true</boolProp>
         </RandomVariableConfig>
         <hashTree/>
@@ -39,8 +39,8 @@
           <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="Variables definidas por el Usuario" enabled="true">
             <collectionProp name="Arguments.arguments"/>
           </elementProp>
-          <stringProp name="HTTPSampler.domain">localhost</stringProp>
-          <stringProp name="HTTPSampler.port">32785</stringProp>
+          <stringProp name="HTTPSampler.domain">k8s-pre-opencanarias.opencanarias.com</stringProp>
+          <stringProp name="HTTPSampler.port">80</stringProp>
           <stringProp name="HTTPSampler.connect_timeout"></stringProp>
           <stringProp name="HTTPSampler.response_timeout"></stringProp>
           <stringProp name="HTTPSampler.protocol"></stringProp>
@@ -56,7 +56,7 @@
           <stringProp name="minimumValue">01</stringProp>
           <stringProp name="outputFormat">00</stringProp>
           <boolProp name="perThread">true</boolProp>
-          <stringProp name="randomSeed">citaprevia</stringProp>
+          <stringProp name="randomSeed">centralreservas</stringProp>
           <stringProp name="variableName">year</stringProp>
         </RandomVariableConfig>
         <hashTree/>
@@ -65,7 +65,7 @@
           <stringProp name="outputFormat">00</stringProp>
           <stringProp name="minimumValue">1</stringProp>
           <stringProp name="maximumValue">2</stringProp>
-          <stringProp name="randomSeed">citaprevia</stringProp>
+          <stringProp name="randomSeed">centralreservas</stringProp>
           <boolProp name="perThread">true</boolProp>
         </RandomVariableConfig>
         <hashTree/>
@@ -74,7 +74,7 @@
           <stringProp name="outputFormat">00</stringProp>
           <stringProp name="minimumValue">20</stringProp>
           <stringProp name="maximumValue">21</stringProp>
-          <stringProp name="randomSeed">citaprevia</stringProp>
+          <stringProp name="randomSeed">centralreservas</stringProp>
           <boolProp name="perThread">true</boolProp>
         </RandomVariableConfig>
         <hashTree/>
@@ -82,8 +82,8 @@
           <stringProp name="variableName">daysafter</stringProp>
           <stringProp name="outputFormat">0</stringProp>
           <stringProp name="minimumValue">0</stringProp>
-          <stringProp name="maximumValue">1</stringProp>
-          <stringProp name="randomSeed">citaprevia</stringProp>
+          <stringProp name="maximumValue">9</stringProp>
+          <stringProp name="randomSeed">centralreservas</stringProp>
           <boolProp name="perThread">true</boolProp>
         </RandomVariableConfig>
         <hashTree/>
@@ -97,7 +97,7 @@
           <stringProp name="HTTPSampler.response_timeout"></stringProp>
           <stringProp name="HTTPSampler.protocol"></stringProp>
           <stringProp name="HTTPSampler.contentEncoding"></stringProp>
-          <stringProp name="HTTPSampler.path">/citaprevia/users/${__RandomString(4,QWERTYUIOPASDFGHJKLZXCVBNM)}${year}${month}${day}91204/meetings</stringProp>
+          <stringProp name="HTTPSampler.path">/centralreservas/users/${__RandomString(4,QWERTYUIOPASDFGHJKLZXCVBNM)}${year}${month}${day}91204/meetings?daysafter=${daysafter}</stringProp>
           <stringProp name="HTTPSampler.method">POST</stringProp>
           <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
           <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
@@ -131,7 +131,7 @@
             <stringProp name="HTTPSampler.response_timeout"></stringProp>
             <stringProp name="HTTPSampler.protocol"></stringProp>
             <stringProp name="HTTPSampler.contentEncoding"></stringProp>
-            <stringProp name="HTTPSampler.path">/citaprevia/meetings/${meetingid}</stringProp>
+            <stringProp name="HTTPSampler.path">/centralreservas/meetings/${meetingid}</stringProp>
             <stringProp name="HTTPSampler.method">DELETE</stringProp>
             <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
             <boolProp name="HTTPSampler.auto_redirects">false</boolProp>

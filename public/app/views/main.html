@@ -7,9 +7,9 @@
     <tr>
       <td>
         <form name="newDate">
-          <input type="text" name="date" placeholder="Type patient id" ng-model="patient.id" required>
+          <input type="text" name="date" placeholder="Type user id" ng-model="user.id" required>
         </form>
-        <button type="button" class="btn btn-primary" ng-click="vm.newDate(patient.id)" >
+        <button type="button" class="btn btn-primary" ng-click="vm.newDate(user.id)" >
           <i class='glyphicon glyphicon-list-alt'></i> New Date</label>
         </button>
       </td >
@@ -17,18 +17,18 @@
       <td>
         <form name="search">
           <div angucomplete-alt id="ex1"
-            placeholder="Type doctor id"
+            placeholder="Type diary id"
             pause="100"
-            selected-object="doctor.id"
-            local-search="vm.localsearchdoctors"
-            local-data="vm.doctors"
+            selected-object="diary.id"
+            local-search="vm.localsearchdiaries"
+            local-data="vm.diaries"
             search-fields="name"
             title-field="name"
             minlength="1"
             match-class="highlight">
           </div>
         </form>
-        <button type="button" class="btn btn-primary" ng-click="vm.search(doctor.id)">
+        <button type="button" class="btn btn-primary" ng-click="vm.search(diary.id)">
           <i class='glyphicon glyphicon-search'></i> Search</label>
         </button>
       </td>
@@ -39,8 +39,8 @@
 
 
 
-<h2 class="text-center" ng-show="vm.doctor">
-  <span class="glyphicon glyphicon-calendar"></span> Dr. {{ vm.doctor.name }} diary
+<h2 class="text-center" ng-show="vm.diary">
+  <span class="glyphicon glyphicon-calendar"></span>{{ vm.diary.name }} diary
 </h2>
 
 <h3 class="text-center">{{ vm.calendarTitle }} </h3>

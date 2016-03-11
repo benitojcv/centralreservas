@@ -1,5 +1,5 @@
-citaprevia:
-  image: benitojcv/citaprevia
+centralreservas:
+  image: benitojcv/centralreservas
   ports:
     - 3000
   links:

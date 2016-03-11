@@ -1,6 +1,6 @@
 #
 # Build:
-#   docker build -t benitojcv/citaprevia .
+#   docker build -t benitojcv/centralreservas .
 #
 FROM ubuntu:14.04
 MAINTAINER benitojcv@gmail.com
@@ -11,7 +11,7 @@ RUN cd /opt; wget https://nodejs.org/dist/v4.2.2/node-v4.2.2-linux-x64.tar.gz
 RUN cd /opt; tar xvf node-v4.2.2-linux-x64.tar.gz
 ENV PATH $PATH:/opt/node-v4.2.2-linux-x64/bin
 
-ENV APPDIR /opt/citaprevia
+ENV APPDIR /opt/centralreservas
 
 RUN mkdir -p $APPDIR
 WORKDIR $APPDIR

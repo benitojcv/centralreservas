@@ -2,31 +2,31 @@
 
 /**
  * @ngdoc function
- * @name opencancitapreviaApp.controller:MainCtrl
+ * @name opencancentralreservasApp.controller:MainCtrl
  * @description
  * # MainCtrl
- * Controller of the opencancitapreviaApp
+ * Controller of the opencancentralreservasApp
  */
-angular.module('opencancitapreviaApp')
-  .controller('MainCtrl', function ($scope, moment,citapreviaService,SweetAlert
+angular.module('opencancentralreservasApp')
+  .controller('MainCtrl', function ($scope, moment,centralreservasService,SweetAlert
   ) {
 
   var vm = this;
 
   var _HOST = 'k8s-pre-opencanarias.opencanarias.com:80';
-  var _SERVICE = '/citaprevia';
+  var _SERVICE = '/centralreservas';
 
   vm.events = [];
-  vm.doctor = undefined;
+  vm.diary = undefined;
 
-  vm.doctors = undefined;
-  refreshDoctors();
+  vm.diaries = undefined;
+  refreshDiaries();
 
-  function refreshDoctors() {
-    citapreviaService.getResource(_HOST,_SERVICE+'/doctors',
-    function (doctors) {
-      console.log("#### available doctors ",doctors);
-      vm.doctors = doctors
+  function refreshDiaries() {
+    centralreservasService.getResource(_HOST,_SERVICE+'/diaries',
+    function (diaries) {
+      console.log("#### available diaries ",diaries);
+      vm.diaries = diaries
     });
   }
 
@@ -50,50 +50,50 @@ angular.module('opencancitapreviaApp')
      type: 'info',
      startsAt: moment(meeting.meeting).toDate(),
      endsAt: moment(meeting.meeting).add(meeting.duration, 'minutes').toDate(),
-     patient: meeting.user,
-     doctor: meeting.doctor,
+     user: meeting.user,
+     diary: meeting.diary,
      _id:meeting._id
    });
   }
 
   // Búsqueda de citas por médico
-  vm.search = function(doctor){
-    if (doctor == undefined) {
-      SweetAlert.swal("Doctor not found","","error");
+  vm.search = function(diary){
+    if (diary == undefined) {
+      SweetAlert.swal("Diary not found","","error");
       return;
     }
     vm.events = [];
-    vm.doctor = doctor.description;
-    console.log("### search dates for doctor " + JSON.stringify(doctor));
-    citapreviaService.getResource(_HOST,_SERVICE+'/doctors'+'/'+doctor.description.id+'/meetings',
+    vm.diary = diary.description;
+    console.log("### search dates for diary " + JSON.stringify(diary));
+    centralreservasService.getResource(_HOST,_SERVICE+'/diaries'+'/'+diary.description.id+'/meetings',
     function (meetings) {
       for (var i in meetings)
         print(meetings[i]);
     });
   };
 
-  vm.newDate = function(patient) {
-    if (patient == undefined)
-      SweetAlert.swal("Patiend id cannot be empty","","error");
+  vm.newDate = function(user) {
+    if (user == undefined)
+      SweetAlert.swal("User id cannot be empty","","error");
 
-    console.log("### new date for patient " + patient);
-    citapreviaService.postResource(_HOST,_SERVICE+'/users'+'/'+patient+'/meetings',
+    console.log("### new date for user " + user);
+    centralreservasService.postResource(_HOST,_SERVICE+'/users'+'/'+user+'/meetings',
     function (meeting) {
-      SweetAlert.swal("The date for patient "+patient+" has been created correctly",
-        "Dr: "+meeting.doctor+" - "+moment(meeting.meeting).format('DD/MM/YYYY HH:m:SS'),
+      SweetAlert.swal("The date for user "+user+" has been created correctly",
+        "Dr: "+meeting.diary+" - "+moment(meeting.meeting).format('DD/MM/YYYY HH:m:SS'),
         "success");
-        refreshDoctors();
+        refreshDiaries();
     });
   }
 
-  vm.localsearchdoctors = function(input) {
+  vm.localsearchdiaries = function(input) {
     var result = [];
     var index = 0;
     var founded = 0;
-    while ((index < vm.doctors.length) && (founded < 5)) {
-        if ((vm.doctors[index]['id'].indexOf(input) >= 0) ||
-        (vm.doctors[index]['name'].indexOf(input) >= 0)){
-          result.push(vm.doctors[index]);
+    while ((index < vm.diaries.length) && (founded < 5)) {
+        if ((vm.diaries[index]['id'].indexOf(input) >= 0) ||
+        (vm.diaries[index]['name'].indexOf(input) >= 0)){
+          result.push(vm.diaries[index]);
           founded++;
         }
         index++;

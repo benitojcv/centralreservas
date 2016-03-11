@@ -3,10 +3,10 @@ var router = express.Router();
 
 var _ = require('lodash');
 
-var service = require('../services/citapreviaservice.js').CitapreviaService;
+var service = require('../services/centralreservasservice.js').centralreservasService;
 var configuration = require('../configuration.js').Configuration;
 
-var helper = require('../services/citapreviaHelper.js').CitapreviaHelper;
+var helper = require('../services/centralreservasHelper.js').centralreservasHelper;
 
 
 router.get('/meetings', function(req, res, next) {
@@ -32,28 +32,28 @@ router.get('/users/:user/meetings', function(req, res, next) {
 	});
 });
 
-router.get('/doctors', function(req, res, next) {
+router.get('/diaries', function(req, res, next) {
   var db = req.db;
   db.get('meetings').find({}, {}, function(err, docs){
     if (err) {
       res.status(500);
-      res.send("Error to get doctors");
+      res.send("Error to get diaries");
     }
     else {
-      var doctors = _.keys(_.groupBy(docs, 'doctor'));
+      var diaries = _.keys(_.groupBy(docs, 'diary'));
 
-      res.send(_.map(doctors, function(d) { return {
+      res.send(_.map(diaries, function(d) { return {
           id: d,
-          name: 'doctor_'+d
+          name: 'diary_'+d
         }
       }));
     }
   });
 });
 
-router.get('/doctors/:doctor/meetings', function(req, res, next) {
+router.get('/diaries/:diary/meetings', function(req, res, next) {
   var db = req.db;
-  db.get('meetings').find({'doctor': _.toNumber(req.params.doctor), 'meeting': { '$gte': new Date() }}, {}, function(err, docs) {
+  db.get('meetings').find({'diary': _.toNumber(req.params.diary), 'meeting': { '$gte': new Date() }}, {}, function(err, docs) {
     if (docs.length > 0)
 		  res.send(docs);
     else {
@@ -87,10 +87,10 @@ router.get('/status', function(req, res, next) {
   collection.find({'status': 'new'}, {}, function(e, docs) {
     status.numMeetings = docs.length;
 
-    var byDoctor = _.countBy(docs, 'doctor');
-    status.numDoctors = _.values(byDoctor).length;
-    status.maxMeetingsByDoctor = _.max(_.values(byDoctor));
-    status.avgMeetingsByDoctor = _.mean(_.values(byDoctor));
+    var byDiary = _.countBy(docs, 'diary');
+    status.numDiaries = _.values(byDiary).length;
+    status.maxMeetingsByDiary = _.max(_.values(byDiary));
+    status.avgMeetingsByDiary = _.mean(_.values(byDiary));
     status.maxMeeting = (docs.length > 0) ? _.maxBy(docs, function(m) { return m.meeting.getTime(); }).meeting : 0;
 
     var inconsistencies = helper.detectInconsistencies(docs);

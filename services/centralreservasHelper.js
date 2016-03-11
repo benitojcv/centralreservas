@@ -1,23 +1,23 @@
 var configuration = require('../configuration.js').Configuration;
 var _ = require('lodash');
 
-exports.CitapreviaHelper = {
+exports.centralreservasHelper = {
   detectInconsistencies: function(meetings) {
-    var sortedMeetings = _.orderBy(meetings, ['doctor', 'meeting']);
-    var groupedMeetings = _.groupBy(sortedMeetings, 'doctor');
+    var sortedMeetings = _.orderBy(meetings, ['diary', 'meeting']);
+    var groupedMeetings = _.groupBy(sortedMeetings, 'diary');
     var inconsistencies = [];
-    for (var doctor in groupedMeetings) {
-      for (var i = 0; i < groupedMeetings[doctor].length - 1; i++) {
-        if (groupedMeetings[doctor][i+1]['meeting'].getTime() <
-            groupedMeetings[doctor][i]['meeting'].getTime() + (groupedMeetings[doctor][i]['duration'] * 60 * 1000)) {
-              inconsistencies.push({meeting1: groupedMeetings[doctor][i], meeting2: groupedMeetings[doctor][i+1]});
+    for (var diary in groupedMeetings) {
+      for (var i = 0; i < groupedMeetings[diary].length - 1; i++) {
+        if (groupedMeetings[diary][i+1]['meeting'].getTime() <
+            groupedMeetings[diary][i]['meeting'].getTime() + (groupedMeetings[diary][i]['duration'] * 60 * 1000)) {
+              inconsistencies.push({meeting1: groupedMeetings[diary][i], meeting2: groupedMeetings[diary][i+1]});
             }
       }
     }
     return inconsistencies;
   },
-  newDoctor: function () {
-    return _.random(configuration.numDoctors);
+  newDiary: function () {
+    return _.random(configuration.numDiaries);
   },
   getDaysAfter: function(date, daysafter) {
     var newDate = date;

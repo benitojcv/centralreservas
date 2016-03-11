@@ -2,14 +2,14 @@
 
 /**
  * @ngdoc overview
- * @name opencancitapreviaApp
+ * @name opencancentralreservasApp
  * @description
- * # opencancitapreviaApp
+ * # opencancentralreservasApp
  *
  * Main module of the application.
  */
 angular
-  .module('opencancitapreviaApp', [
+  .module('opencancentralreservasApp', [
     'ngAnimate',
     'ngCookies',
     'ngResource',

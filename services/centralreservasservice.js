@@ -1,11 +1,11 @@
 var configuration = require('../configuration.js').Configuration;
-var helper = require('./citapreviaHelper.js').CitapreviaHelper;
+var helper = require('./centralreservasHelper.js').centralreservasHelper;
 var ObjectID = require('mongodb').ObjectID;
 var _ = require('lodash');
 var hal = require('hal');
 
 
-exports.CitapreviaService = {
+exports.centralreservasService = {
   deleteMeeting: function(meeting, db) {
     return new Promise(function(fulfill, reject) {
       db.get('meetings').update(
@@ -30,22 +30,22 @@ exports.CitapreviaService = {
       var fromdate = helper.getDaysAfter(new Date(), daysafter);
       // console.log(fromdate);
 
-      //Locate Doctor's user
-      redisClient.get(user, function(err, doctor) {
+      //Locate Diary's user
+      redisClient.get(user, function(err, diary) {
         if (err) {
           console.log(err);
           reject(err);
         }
         else {
-          if (doctor == null) {
-            doctor = helper.newDoctor();
-            redisClient.set(user, doctor);
+          if (diary == null) {
+            diary = helper.newDiary();
+            redisClient.set(user, diary);
           }
 
-          //get Diary's Doctor
+          //get Diary's Diary
           db.get('meetings').find(
             {
-              'doctor': _.toNumber(doctor),
+              'diary': _.toNumber(diary),
               'status': 'new',
               'meeting': { '$gte': new Date() }
             }, {}, function(err, docs) {
@@ -68,11 +68,11 @@ exports.CitapreviaService = {
             meeting = new hal.Resource({
                 _id: uniqueid,
                 'user': user,
-                'doctor': _.toNumber(doctor),
+                'diary': _.toNumber(diary),
                 'duration': configuration.meetingDuration,
                 'status': 'new'
-              }, "/citaprevia" + "/meetings/" + uniqueid);
-            meeting.link("delete", "/citaprevia" + "/meetings/" + uniqueid);
+              }, "/centralreservas" + "/meetings/" + uniqueid);
+            meeting.link("delete", "/centralreservas" + "/meetings/" + uniqueid);
 
             if (docs.length > 0) {
               // Filter and Order meetings

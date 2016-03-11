@@ -6,24 +6,24 @@ $ ./startup.sh
 
 API:
 
-POST /citaprevia/users/:user/meetings
+POST /centralreservas/users/:user/meetings
 
-GET /citaprevia/doctors/:doctor/meetings
+GET /centralreservas/diaries/:diary/meetings
 
-GET /citaprevia/meetings
+GET /centralreservas/meetings
 
-GET /citaprevia/meetings/:cita
+GET /centralreservas/meetings/:cita
 
-GET /citaprevia/users/:user/meetings
+GET /centralreservas/users/:user/meetings
 
-GET /citaprevia/doctors
+GET /centralreservas/diaries
 
-GET /citaprevia/status
+GET /centralreservas/status
 
-DELETE /citaprevia/:cita
+DELETE /centralreservas/:cita
 
-DELETE /citaprevia/meetings
+DELETE /centralreservas/meetings
 
 Prueba:
 
-http://http://localhost:3000/citaprevia/status
+http://http://localhost:3000/centralreservas/status

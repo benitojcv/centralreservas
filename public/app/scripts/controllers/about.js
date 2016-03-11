@@ -2,12 +2,12 @@
 
 /**
  * @ngdoc function
- * @name opencancitapreviaApp.controller:AboutCtrl
+ * @name opencancentralreservasApp.controller:AboutCtrl
  * @description
  * # AboutCtrl
- * Controller of the opencancitapreviaApp
+ * Controller of the opencancentralreservasApp
  */
-angular.module('opencancitapreviaApp')
+angular.module('opencancentralreservasApp')
   .controller('AboutCtrl', function () {
     this.awesomeThings = [
       'HTML5 Boilerplate',
