@@ -1,4 +1,4 @@
-# v.0.0.3 Ejemplo de sistema de cita previa
+# Ejemplo de sistema de central de reservas
 
 Ejecutar la aplicación (con docker-compose):
 
