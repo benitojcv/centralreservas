@@ -1,0 +1,102 @@
+<div ng-controller="MainCtrl as vm" id="table-bar">
+
+<table>
+  <thead>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        <form name="newDate">
+          <input type="text" name="date" placeholder="Type patient id" ng-model="patient.id" required>
+        </form>
+        <button type="button" class="btn btn-primary" ng-click="vm.newDate(patient.id)" >
+          <i class='glyphicon glyphicon-list-alt'></i> New Date</label>
+        </button>
+      </td >
+      <td width="140px"/>
+      <td>
+        <form name="search">
+          <div angucomplete-alt id="ex1"
+            placeholder="Type doctor id"
+            pause="100"
+            selected-object="doctor.id"
+            local-search="vm.localsearchdoctors"
+            local-data="vm.doctors"
+            search-fields="name"
+            title-field="name"
+            minlength="1"
+            match-class="highlight">
+          </div>
+        </form>
+        <button type="button" class="btn btn-primary" ng-click="vm.search(doctor.id)">
+          <i class='glyphicon glyphicon-search'></i> Search</label>
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+
+
+
+<h2 class="text-center" ng-show="vm.doctor">
+  <span class="glyphicon glyphicon-calendar"></span> Dr. {{ vm.doctor.name }} diary
+</h2>
+
+<h3 class="text-center">{{ vm.calendarTitle }} </h3>
+  <div class="row">
+    <div class="col-md-6 text-center">
+      <div class="btn-group">
+        <button
+          class="btn btn-primary"
+          mwl-date-modifier
+          date="vm.viewDate"
+          decrement="vm.calendarView">
+          Previous
+        </button>
+        <button
+          class="btn btn-default"
+          mwl-date-modifier
+          date="vm.viewDate"
+          set-to-today>
+          Today
+        </button>
+        <button
+          class="btn btn-primary"
+          mwl-date-modifier
+          date="vm.viewDate"
+          increment="vm.calendarView">
+          Next
+        </button>
+      </div>
+    </div>
+
+    <br class="visible-xs visible-sm">
+
+    <div class="col-md-6 text-center">
+      <div class="btn-group">
+        <label class="btn btn-primary" ng-model="vm.calendarView" uib-btn-radio="'year'">Year</label>
+        <label class="btn btn-primary" ng-model="vm.calendarView" uib-btn-radio="'month'">Month</label>
+        <label class="btn btn-primary" ng-model="vm.calendarView" uib-btn-radio="'week'">Week</label>
+        <label class="btn btn-primary" ng-model="vm.calendarView" uib-btn-radio="'day'">Day</label>
+      </div>
+    </div>
+
+  </div>
+
+  <br>
+
+  <mwl-calendar
+    events="vm.events"
+    view="vm.calendarView"
+    view-title="vm.calendarTitle"
+    view-date="vm.viewDate"
+    on-event-click="vm.eventClicked(calendarEvent)"
+    on-event-times-changed="vm.eventTimesChanged(calendarEvent); calendarEvent.startsAt = calendarNewEventStart; calendarEvent.endsAt = calendarNewEventEnd"
+    cell-is-open="vm.isCellOpen"
+    day-view-start="06:00"
+    day-view-end="22:00"
+    day-view-split="6"
+    cell-modifier="vm.modifyCell(calendarCell)">
+  </mwl-calendar>
+</div>

@@ -1,0 +1,11 @@
+citaprevia:
+  image: benitojcv/citaprevia
+  ports:
+    - 3000
+  links:
+    - mongodb:mongodb
+    - redisdb:redisdb
+mongodb:
+  image: mongo
+redisdb:
+  image: redis

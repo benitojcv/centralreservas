@@ -1,0 +1,5 @@
+{
+  "directory": "bower_components",
+  "proxy":"http://proxy.opencanarias.com:3128/",
+  "https-proxy":"http://proxy.opencanarias.com:3128/"
+}
