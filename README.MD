@@ -1,4 +1,4 @@
-# Ejemplo de sistema de cita previa
+# v.0.0.1 Ejemplo de sistema de cita previa
 
 Ejecutar la aplicación (con docker-compose):
 
