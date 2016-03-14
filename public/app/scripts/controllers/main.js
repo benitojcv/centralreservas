@@ -22,6 +22,12 @@ angular.module('opencancentralreservasApp')
   vm.diaries = undefined;
   refreshDiaries();
 
+  vm.click = function (button) {
+    console.clear();
+    $(button).click();
+  };
+
+
   function refreshDiaries() {
     centralreservasService.getResource(_HOST,_SERVICE+'/diaries',
     function (diaries) {
