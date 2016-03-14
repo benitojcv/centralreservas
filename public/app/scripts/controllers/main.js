@@ -22,6 +22,12 @@ angular.module('opencancentralreservasApp')
   vm.diaries = undefined;
   refreshDiaries();
 
+  vm.click = function (button) {
+    console.clear();
+    $(button).click();
+  };
+
+
   function refreshDiaries() {
     centralreservasService.getResource(_HOST,_SERVICE+'/diaries',
     function (diaries) {
@@ -80,7 +86,7 @@ angular.module('opencancentralreservasApp')
     centralreservasService.postResource(_HOST,_SERVICE+'/users'+'/'+user+'/meetings',
     function (meeting) {
       SweetAlert.swal("The date for user "+user+" has been created correctly",
-        "Dr: "+meeting.diary+" - "+moment(meeting.meeting).format('DD/MM/YYYY HH:m:SS'),
+        "Diary "+meeting.diary+" - "+moment(meeting.meeting).format('DD/MM/YYYY HH:m:SS'),
         "success");
         refreshDiaries();
     });

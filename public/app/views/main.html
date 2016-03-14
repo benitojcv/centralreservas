@@ -1,5 +1,7 @@
-<div ng-controller="MainCtrl as vm" id="table-bar">
-
+<div ng-controller="MainCtrl as vm" id="table-bar"
+data-ng-swipe-left="vm.click('#next')"
+data-ng-swipe-right="vm.click('#prev')">
+  
 <table>
   <thead>
   </thead>
@@ -47,7 +49,7 @@
   <div class="row">
     <div class="col-md-6 text-center">
       <div class="btn-group">
-        <button
+        <button id="prev"
           class="btn btn-primary"
           mwl-date-modifier
           date="vm.viewDate"
@@ -61,7 +63,7 @@
           set-to-today>
           Today
         </button>
-        <button
+        <button id="next"
           class="btn btn-primary"
           mwl-date-modifier
           date="vm.viewDate"
